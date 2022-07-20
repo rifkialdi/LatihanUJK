@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Kategori(
     val kategori: String,
-    val ItemKategori: List<ItemKategori>
+    val itemKategori: List<ItemKategori>
 ) : Parcelable
 
 @Parcelize
