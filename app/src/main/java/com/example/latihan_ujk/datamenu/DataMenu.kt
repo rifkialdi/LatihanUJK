@@ -1,7 +1,6 @@
 package com.example.latihan_ujk.datamenu
 
 import com.example.latihan_ujk.model.ItemKategori
-import com.example.latihan_ujk.model.Kategori
 
 object DataMenu {
     val dataMakananImage = arrayListOf<String>(
@@ -13,7 +12,7 @@ object DataMenu {
         "https://img-global.cpcdn.com/recipes/3df4b7a9cecaf11d/680x482cq70/sate-kelinci-bumbu-kacang-foto-resep-utama.jpg"
     )
 
-    val dataMakananName = arrayListOf<String>(
+    val dataMakananNama = arrayListOf<String>(
         "Pizza",
         "Ayam Korea",
         "Ayam Madu Bakar",
@@ -43,8 +42,8 @@ object DataMenu {
     val dataMakanan: ArrayList<ItemKategori>
     get() {
         val list = arrayListOf<ItemKategori>()
-        for (item in dataMakananName.indices) {
-            list.add(ItemKategori(dataMakananImage[item], dataMakananName[item], dataMakananDeskripsi[item], dataMakananHarga[item]))
+        for (item in dataMakananNama.indices) {
+            list.add(ItemKategori(dataMakananImage[item], dataMakananNama[item], dataMakananDeskripsi[item], dataMakananHarga[item]))
         }
         return list
     }
@@ -58,7 +57,7 @@ object DataMenu {
         "https://dl.kaskus.id/www.templeofthai.com/images/recipes/xthaitea.jpg.pagespeed.ic.9mC5d3NI3c.jpg"
     )
 
-    val dataMinumanName = arrayListOf<String>(
+    val dataMinumanNama = arrayListOf<String>(
         "Tea",
         "Capcin",
         "Lemon",
@@ -67,7 +66,7 @@ object DataMenu {
         "RedMilk"
     )
 
-    val dataMinumanDescription = arrayListOf<String>(
+    val dataMinumanDeskripsi = arrayListOf<String>(
         "Teh manis",
         "Capucino dengan cincau segar",
         "Minuman jus lemon yang segar",
@@ -88,8 +87,8 @@ object DataMenu {
     val dataMinuman: ArrayList<ItemKategori>
     get() {
         val list = arrayListOf<ItemKategori>()
-        for (item in dataMinumanName.indices) {
-            list.add(ItemKategori(dataMinumanImage[item], dataMinumanName[item], dataMinumanDescription[item], dataMinumanHarga[item]))
+        for (item in dataMinumanNama.indices) {
+            list.add(ItemKategori(dataMinumanImage[item], dataMinumanNama[item], dataMinumanDeskripsi[item], dataMinumanHarga[item]))
         }
         return list
     }
@@ -103,7 +102,7 @@ object DataMenu {
         "https://magnate.id/wp-content/uploads/2022/02/Bisnis-Dessert-Box-930x620.jpg"
     )
 
-    val dataDessertName = arrayListOf<String>(
+    val dataDessertNama = arrayListOf<String>(
         "Coffe vanila cake",
         "Vanila latte",
         "Maccaron",
@@ -112,7 +111,7 @@ object DataMenu {
         "Redvelvet vanila"
     )
 
-    val dataDessertDescription = arrayListOf<String>(
+    val dataDessertDeskripsi = arrayListOf<String>(
         "Kue dengan topping coffe dan vanila",
         "Dengan paduan rasa vanila latte",
         "Gurih dan manin di mulut",
@@ -133,8 +132,8 @@ object DataMenu {
     val dataDessert: ArrayList<ItemKategori>
     get() {
         val list = arrayListOf<ItemKategori>()
-        for (item in dataDessertName.indices) {
-            list.add(ItemKategori(dataDessertImage[item], dataDessertName[item], dataDessertDescription[item], dataDessertHarga[item]))
+        for (item in dataDessertNama.indices) {
+            list.add(ItemKategori(dataDessertImage[item], dataDessertNama[item], dataDessertDeskripsi[item], dataDessertHarga[item]))
         }
         return list
     }

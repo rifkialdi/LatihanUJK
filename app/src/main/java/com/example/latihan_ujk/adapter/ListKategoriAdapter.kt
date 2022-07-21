@@ -3,12 +3,20 @@ package com.example.latihan_ujk.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.latihan_ujk.databinding.ItemListKategoriBinding
+import com.example.latihan_ujk.model.ItemKategori
 import com.example.latihan_ujk.model.Kategori
 
 class ListKategoriAdapter(val itemKategori: Kategori) : RecyclerView.Adapter<ListKategoriAdapter.ListViewHolder>() {
+    private lateinit var onItemClickCallback: IOnItemClickCallback
+
+    fun onItemClick(itemClick: IOnItemClickCallback) {
+        this.onItemClickCallback = itemClick
+    }
+
     class ListViewHolder(val binding : ItemListKategoriBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -17,14 +25,22 @@ class ListKategoriAdapter(val itemKategori: Kategori) : RecyclerView.Adapter<Lis
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val data = itemKategori.itemKategori[position]
+
         holder.binding.idnameJenis.text = data.name
         Glide.with(holder.binding.root)
             .load(data.image)
             .fitCenter()
             .into(holder.binding.idimgItem)
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(data)
+        }
     }
 
     override fun getItemCount(): Int {
         return itemKategori.itemKategori.size
+    }
+
+    interface IOnItemClickCallback {
+        fun onItemClicked(item: ItemKategori)
     }
 }
