@@ -1,4 +1,4 @@
-package com.example.latihan_ujk
+package com.example.latihan_ujk.menu
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

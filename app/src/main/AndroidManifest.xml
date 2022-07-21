@@ -16,13 +16,16 @@
         android:theme="@style/Theme.LatihanUJK"
         tools:targetApi="31">
         <activity
-            android:name=".DetailListKategoriActivity"
+            android:name=".pesanan.PesananActivity"
             android:exported="false" />
         <activity
-            android:name=".ListKategoriActivity"
+            android:name=".menu.DetailListKategoriActivity"
             android:exported="false" />
         <activity
-            android:name=".KategoriActivity"
+            android:name=".menu.ListKategoriActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menu.KategoriActivity"
             android:exported="false" />
         <activity
             android:name=".DashboardActivity"

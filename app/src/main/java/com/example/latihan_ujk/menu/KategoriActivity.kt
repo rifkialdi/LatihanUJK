@@ -1,10 +1,10 @@
-package com.example.latihan_ujk
+package com.example.latihan_ujk.menu
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import com.example.latihan_ujk.R
 import com.example.latihan_ujk.databinding.ActivityKategoriBinding
 import com.example.latihan_ujk.datamenu.DataMenu
 import com.example.latihan_ujk.model.Kategori
