@@ -12,7 +12,7 @@ data class Kategori(
 @Parcelize
 data class ItemKategori(
     val image: String,
-    val name: String,
+    val nama: String,
     val deskripsi: String,
     val harga: String
 ) : Parcelable

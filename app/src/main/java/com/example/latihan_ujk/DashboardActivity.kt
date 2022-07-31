@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.example.latihan_ujk.databinding.ActivityDashboardBinding
+import com.example.latihan_ujk.key.Key
 import com.example.latihan_ujk.menu.KategoriActivity
 import com.example.latihan_ujk.pesanan.PesananActivity
 
@@ -18,6 +19,8 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.title = "Dashboard"
+
         binding.idbtnMenu.setOnClickListener(this)
         binding.idbtnPesanan.setOnClickListener(this)
     }
@@ -25,11 +28,17 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.idbtn_menu -> {
-                startActivity(Intent(this, KategoriActivity::class.java))
+                val intent = Intent(this, KategoriActivity::class.java)
+                intent.putExtra(Key.KEY_DASHBOARD, "Menu")
+                startActivity(intent)
             }
-            R.id.idbtn_pesanan-> {
-                Log.e("TAG", "onClick: hahahahah", )
-                startActivity(Intent(this, PesananActivity::class.java))
+            R.id.idbtn_pesanan -> {
+                val intent = Intent(this, PesananActivity::class.java)
+                intent.putExtra(Key.KEY_DASHBOARD, "Pesanan")
+                startActivity(intent)
+            }
+            R.id.idbtn_dapur -> {
+
             }
         }
     }

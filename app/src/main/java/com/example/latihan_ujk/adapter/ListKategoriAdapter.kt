@@ -26,7 +26,7 @@ class ListKategoriAdapter(val itemKategori: Kategori) : RecyclerView.Adapter<Lis
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val data = itemKategori.itemKategori[position]
 
-        holder.binding.idnameJenis.text = data.name
+        holder.binding.idnameJenis.text = data.nama
         Glide.with(holder.binding.root)
             .load(data.image)
             .fitCenter()

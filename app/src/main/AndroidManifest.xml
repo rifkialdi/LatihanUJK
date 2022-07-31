@@ -16,6 +16,9 @@
         android:theme="@style/Theme.LatihanUJK"
         tools:targetApi="31">
         <activity
+            android:name=".pesanan.ListPesananActivity"
+            android:exported="false" />
+        <activity
             android:name=".pesanan.PesananActivity"
             android:exported="false" />
         <activity
