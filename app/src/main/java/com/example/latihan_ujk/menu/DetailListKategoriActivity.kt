@@ -14,11 +14,14 @@ import com.example.latihan_ujk.databinding.ActivityDetailListKategoriBinding
 import com.example.latihan_ujk.key.Key
 import com.example.latihan_ujk.model.ItemKategori
 import com.example.latihan_ujk.model.Kategori
+import com.example.latihan_ujk.model.PesananModel
+import com.example.latihan_ujk.pesanan.ListPesananActivity
 import com.example.latihan_ujk.pesanan.PesananActivity
 
 class DetailListKategoriActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailListKategoriBinding
+    private var getNoMejaPesanan: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +30,7 @@ class DetailListKategoriActivity : AppCompatActivity() {
 
         val getData = intent.getParcelableExtra<ItemKategori>(Key.KEY_DETAIL_KATEGORI)!!
         val getKategori = intent.getStringExtra(Key.KEY_KATEGORI)!!
-        val getNoMejaPesanan = intent.getStringExtra(Key.KEY_NO_MEJA)
+        getNoMejaPesanan = intent.getStringExtra(Key.KEY_NO_MEJA)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getKategori
@@ -42,7 +45,6 @@ class DetailListKategoriActivity : AppCompatActivity() {
             .into(binding.idimgKategori)
 
         binding.idbtnPesan.setOnClickListener {
-            Log.e("NO $getNoMejaPesanan", "onCreate: $getData | $getKategori", )
             showDialog(getData, getNoMejaPesanan)
         }
     }
@@ -56,9 +58,14 @@ class DetailListKategoriActivity : AppCompatActivity() {
             .setMessage(messege)
             .setPositiveButton("Ya") {_, _ ->
                 if (noMeja != null) {
-                    Toast.makeText(this, "Ditambahkan", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, ListPesananActivity::class.java)
+                    intent.putExtra(Key.KEY_KATEGORI, PesananModel(1, noMeja, data.nama, data.harga))
+                    intent.putExtra(Key.KEY_NO_MEJA, noMeja)
+                    startActivity(intent)
                 } else {
-                    startActivity(Intent(this, PesananActivity::class.java))
+                    val intent = Intent(this, PesananActivity::class.java)
+                    intent.putExtra(Key.KEY_DASHBOARD, "Pilih No Meja")
+                    startActivity(intent)
                 }
             }
             .setNegativeButton("Batal") { dialog, _ ->

@@ -62,6 +62,4 @@ class KategoriActivity : AppCompatActivity(), View.OnClickListener {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }
