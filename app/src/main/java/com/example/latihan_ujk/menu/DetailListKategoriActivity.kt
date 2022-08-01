@@ -1,6 +1,8 @@
 package com.example.latihan_ujk.menu
 
+import android.content.ContentValues
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,22 +13,29 @@ import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.example.latihan_ujk.R
 import com.example.latihan_ujk.databinding.ActivityDetailListKategoriBinding
+import com.example.latihan_ujk.db.DatabaseContract
+import com.example.latihan_ujk.db.PesananHelper
 import com.example.latihan_ujk.key.Key
 import com.example.latihan_ujk.model.ItemKategori
 import com.example.latihan_ujk.model.Kategori
 import com.example.latihan_ujk.model.PesananModel
 import com.example.latihan_ujk.pesanan.ListPesananActivity
 import com.example.latihan_ujk.pesanan.PesananActivity
+import java.util.*
 
 class DetailListKategoriActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailListKategoriBinding
     private var getNoMejaPesanan: String? = null
+    private lateinit var pesananHelper: PesananHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailListKategoriBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        pesananHelper = PesananHelper.getInstance(applicationContext)
+        pesananHelper.open()
 
         val getData = intent.getParcelableExtra<ItemKategori>(Key.KEY_DETAIL_KATEGORI)!!
         val getKategori = intent.getStringExtra(Key.KEY_KATEGORI)!!
@@ -58,10 +67,17 @@ class DetailListKategoriActivity : AppCompatActivity() {
             .setMessage(messege)
             .setPositiveButton("Ya") {_, _ ->
                 if (noMeja != null) {
-                    val intent = Intent(this, ListPesananActivity::class.java)
-                    intent.putExtra(Key.KEY_KATEGORI, PesananModel(1, noMeja, data.nama, data.harga))
-                    intent.putExtra(Key.KEY_NO_MEJA, noMeja)
-                    startActivity(intent)
+                    val values = ContentValues()
+                    values.put(DatabaseContract.NoteColumn.NOMER_MEJA, noMeja)
+                    values.put(DatabaseContract.NoteColumn.NAMA, data.nama)
+                    values.put(DatabaseContract.NoteColumn.HARGA, data.harga)
+                    values.put(DatabaseContract.NoteColumn.WAKTU, getCurrentDate())
+                    val result = pesananHelper.insert(values)
+                    if (result > 0) {
+                        val intent = Intent(this, ListPesananActivity::class.java)
+                        intent.putExtra(Key.KEY_NO_MEJA, noMeja)
+                        startActivity(intent)
+                    }
                 } else {
                     val intent = Intent(this, PesananActivity::class.java)
                     intent.putExtra(Key.KEY_DASHBOARD, "Pilih No Meja")
@@ -73,6 +89,13 @@ class DetailListKategoriActivity : AppCompatActivity() {
             }
             .create()
             .show()
+    }
+
+    private fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.getDefault())
+        val date = Date()
+
+        return dateFormat.format(date)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

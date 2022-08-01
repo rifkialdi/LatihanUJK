@@ -9,10 +9,10 @@ import com.example.latihan_ujk.model.PesananModel
 
 class ListPesananAdapter(private val onItemClickCallback: IOnItemClickCallback) : RecyclerView.Adapter<ListPesananAdapter.ListViewHolder>() {
 
-    var listPesanan = ArrayList<PesananModel?>()
+    var listPesanan = ArrayList<PesananModel>()
 
-    fun tambahData(data: PesananModel?) {
-        this.listPesanan.add(data)
+    fun delete(index: Int) {
+        this.listPesanan.removeAt(index)
     }
 
     class ListViewHolder(val binding: ItemListPesananBinding) : RecyclerView.ViewHolder(binding.root)
@@ -23,12 +23,14 @@ class ListPesananAdapter(private val onItemClickCallback: IOnItemClickCallback) 
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val data = listPesanan[position]
-        holder.binding.idtvNama.text = data?.nama
-        holder.binding.idtvHarga.text = data?.harga
+        holder.binding.idtvNama.text = data.nama
+        holder.binding.idtvHarga.text = data.harga
 
         holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(data)
+            onItemClickCallback.onItemClicked(data, position)
         }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -36,6 +38,6 @@ class ListPesananAdapter(private val onItemClickCallback: IOnItemClickCallback) 
     }
 
     interface IOnItemClickCallback {
-        fun onItemClicked(data: PesananModel?)
+        fun onItemClicked(data: PesananModel, position: Int)
     }
 }

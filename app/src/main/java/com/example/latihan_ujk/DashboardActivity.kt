@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.example.latihan_ujk.dapur.DapurActivity
 import com.example.latihan_ujk.databinding.ActivityDashboardBinding
 import com.example.latihan_ujk.key.Key
 import com.example.latihan_ujk.menu.KategoriActivity
@@ -23,6 +24,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.idbtnMenu.setOnClickListener(this)
         binding.idbtnPesanan.setOnClickListener(this)
+        binding.idbtnDapur.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -38,7 +40,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.idbtn_dapur -> {
-
+                startActivity(Intent(this, DapurActivity::class.java))
             }
         }
     }

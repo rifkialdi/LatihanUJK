@@ -8,5 +8,6 @@ data class PesananModel(
     val id: Int,
     val nomerMeja: String,
     val nama: String,
-    val harga: String
+    val harga: String,
+    val waktu: String
 ) : Parcelable
