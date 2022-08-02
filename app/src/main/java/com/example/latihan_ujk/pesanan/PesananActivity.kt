@@ -20,8 +20,7 @@ class PesananActivity : AppCompatActivity(), View.OnClickListener {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val getDashboard = intent.getStringExtra(Key.KEY_DASHBOARD)
-        supportActionBar?.title = getDashboard
+        supportActionBar?.title = "Pesanan"
 
         binding.idbtnLanjut.setOnClickListener(this)
     }

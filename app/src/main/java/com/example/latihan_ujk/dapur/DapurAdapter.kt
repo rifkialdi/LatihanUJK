@@ -24,7 +24,7 @@ class DapurAdapter(val onItemClickCallback: IOnItemClickCallback) : RecyclerView
         val data = listDapur[position]
         holder.binding.idtvNama.text = data.nama
         holder.binding.idtvNomerMeja.text = "No Meja\n${data.nomerMeja}"
-        holder.binding.idtvHarga.text = data.harga
+        holder.binding.idtvHarga.text = "Rp. ${data.harga}"
         holder.binding.idtvWaktu.text = data.waktu
 
         holder.itemView.setOnClickListener {

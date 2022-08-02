@@ -22,8 +22,7 @@ class KategoriActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityKategoriBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val getDashboard = intent.getStringExtra(Key.KEY_DASHBOARD)
-        supportActionBar?.title = getDashboard
+        supportActionBar?.title = "Menu"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         getNoMejaPesanan = intent.getStringExtra(Key.KEY_NO_MEJA)

@@ -3,6 +3,7 @@ package com.example.latihan_ujk.dapur
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
@@ -27,6 +28,7 @@ class DapurActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDapurBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Dapur"
 
         adapterr = DapurAdapter(object : DapurAdapter.IOnItemClickCallback {
@@ -80,5 +82,12 @@ class DapurActivity : AppCompatActivity() {
                 }
                 .create()
                 .show()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

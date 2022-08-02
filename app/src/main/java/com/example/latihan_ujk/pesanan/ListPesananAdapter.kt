@@ -24,7 +24,7 @@ class ListPesananAdapter(private val onItemClickCallback: IOnItemClickCallback) 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val data = listPesanan[position]
         holder.binding.idtvNama.text = data.nama
-        holder.binding.idtvHarga.text = data.harga
+        holder.binding.idtvHarga.text = "Rp. ${data.harga}"
 
         holder.itemView.setOnClickListener {
             onItemClickCallback.onItemClicked(data, position)

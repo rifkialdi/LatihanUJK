@@ -43,7 +43,7 @@ class PesananHelper(context: Context) {
             null,
             null,
             null,
-            "$_ID ASC")
+            "$NOMER_MEJA ASC")
     }
 
     fun queryByNoMeja(NoMeja: String): Cursor {

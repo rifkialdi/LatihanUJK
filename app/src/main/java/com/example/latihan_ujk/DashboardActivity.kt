@@ -31,12 +31,10 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         when(v?.id) {
             R.id.idbtn_menu -> {
                 val intent = Intent(this, KategoriActivity::class.java)
-                intent.putExtra(Key.KEY_DASHBOARD, "Menu")
                 startActivity(intent)
             }
             R.id.idbtn_pesanan -> {
                 val intent = Intent(this, PesananActivity::class.java)
-                intent.putExtra(Key.KEY_DASHBOARD, "Pesanan")
                 startActivity(intent)
             }
             R.id.idbtn_dapur -> {
