@@ -1,37 +1,33 @@
-package com.example.latihan_ujk.dapur
+package com.example.latihan_ujk.bengkel
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.latihan_ujk.R
-import com.example.latihan_ujk.databinding.ActivityDapurBinding
+import com.example.latihan_ujk.databinding.ActivityBengkelBinding
 import com.example.latihan_ujk.db.MappingHelper
 import com.example.latihan_ujk.db.PesananHelper
 import com.example.latihan_ujk.model.PesananModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
-class DapurActivity : AppCompatActivity() {
+class BengkelActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDapurBinding
+    private lateinit var binding: ActivityBengkelBinding
     private lateinit var pesananHelper: PesananHelper
-    private lateinit var adapterr: DapurAdapter
+    private lateinit var adapterr: BengkelAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDapurBinding.inflate(layoutInflater)
+        binding = ActivityBengkelBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Dapur"
+        supportActionBar?.title = "Bengkel"
 
-        adapterr = DapurAdapter(object : DapurAdapter.IOnItemClickCallback {
+        adapterr = BengkelAdapter(object : BengkelAdapter.IOnItemClickCallback {
             override fun onItemClicked(data: PesananModel, position: Int) {
                 showDialog(data, position)
             }
@@ -63,14 +59,14 @@ class DapurActivity : AppCompatActivity() {
     fun showRvDapur() {
         binding.idrvDapur.apply {
             adapter = adapterr
-            layoutManager = LinearLayoutManager(this@DapurActivity)
+            layoutManager = LinearLayoutManager(this@BengkelActivity)
         }
     }
 
     fun showDialog(data: PesananModel, position: Int) {
         val dialog = AlertDialog.Builder(this)
             dialog.setTitle("Confirmasi")
-                .setMessage("Apakah menu sudah siap ?")
+                .setMessage("Apakah item sudah siap ?")
                 .setPositiveButton("Sudah") { _, _ ->
                     pesananHelper.open()
                     pesananHelper.deleteById(data.id.toString())

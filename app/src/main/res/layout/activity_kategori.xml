@@ -19,21 +19,21 @@
             android:id="@+id/idbtn_makanan"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Makanan"
+            android:text="Motor"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/idbtn_minuman"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Minuman"
+            android:text="Mobil"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/idbtn_dessert"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Dessert"
+            android:text="Sepeda"
             android:textAllCaps="false" />
     </LinearLayout>
 

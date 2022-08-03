@@ -5,8 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
-import com.example.latihan_ujk.db.DatabaseContract.NoteColumn.Companion.NAMA
-import com.example.latihan_ujk.db.DatabaseContract.NoteColumn.Companion.NOMER_MEJA
+import com.example.latihan_ujk.db.DatabaseContract.NoteColumn.Companion.NOMER_PLAT
 import com.example.latihan_ujk.db.DatabaseContract.NoteColumn.Companion.TABLE_NAME
 import com.example.latihan_ujk.db.DatabaseContract.NoteColumn.Companion._ID
 
@@ -43,14 +42,14 @@ class PesananHelper(context: Context) {
             null,
             null,
             null,
-            "$NOMER_MEJA ASC")
+            "$NOMER_PLAT ASC")
     }
 
     fun queryByNoMeja(NoMeja: String): Cursor {
         return database.query(
             DATABASE_TABLE,
             null,
-            "$NOMER_MEJA = ?",
+            "$NOMER_PLAT = ?",
             arrayOf(NoMeja),
             null,
             null,

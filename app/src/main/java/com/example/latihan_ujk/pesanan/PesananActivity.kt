@@ -31,7 +31,7 @@ class PesananActivity : AppCompatActivity(), View.OnClickListener {
                 val noMeja = binding.idedtNomermeja.text.toString()
                 if (noMeja.isNotEmpty()) {
                     val intent = Intent(this, ListPesananActivity::class.java)
-                    intent.putExtra(Key.KEY_NO_MEJA, noMeja)
+                    intent.putExtra(Key.KEY_NO_PLAT, noMeja)
                     startActivity(intent)
                 } else {
                     binding.idedtNomermeja.error = "Tidak boleh kosong"

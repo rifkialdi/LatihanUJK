@@ -5,20 +5,14 @@ import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
-import com.example.latihan_ujk.R
 import com.example.latihan_ujk.databinding.ActivityDetailListKategoriBinding
 import com.example.latihan_ujk.db.DatabaseContract
 import com.example.latihan_ujk.db.PesananHelper
 import com.example.latihan_ujk.key.Key
 import com.example.latihan_ujk.model.ItemKategori
-import com.example.latihan_ujk.model.Kategori
-import com.example.latihan_ujk.model.PesananModel
 import com.example.latihan_ujk.pesanan.ListPesananActivity
 import com.example.latihan_ujk.pesanan.PesananActivity
 import java.util.*
@@ -26,7 +20,7 @@ import java.util.*
 class DetailListKategoriActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailListKategoriBinding
-    private var getNoMejaPesanan: String? = null
+    private var getNoPlat: String? = null
     private lateinit var pesananHelper: PesananHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +33,7 @@ class DetailListKategoriActivity : AppCompatActivity() {
 
         val getData = intent.getParcelableExtra<ItemKategori>(Key.KEY_DETAIL_KATEGORI)!!
         val getKategori = intent.getStringExtra(Key.KEY_KATEGORI)!!
-        getNoMejaPesanan = intent.getStringExtra(Key.KEY_NO_MEJA)
+        getNoPlat = intent.getStringExtra(Key.KEY_NO_PLAT)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = getKategori
@@ -54,33 +48,33 @@ class DetailListKategoriActivity : AppCompatActivity() {
             .into(binding.idimgKategori)
 
         binding.idbtnPesan.setOnClickListener {
-            showDialog(getData, getNoMejaPesanan)
+            showDialog(getData, getNoPlat)
         }
     }
 
-    fun showDialog(data: ItemKategori, noMeja: String?) {
-        val title = if (noMeja != null) "Yakin ingin memesan ini?" else "Anda belum memilih No Meja makanan"
-        val messege = if (noMeja != null) "No meja : $noMeja \nMenu : ${data.nama} \nHarga : ${data.harga}" else "Pilih No Meja dulu ?"
+    fun showDialog(data: ItemKategori, noPlat: String?) {
+        val title = if (noPlat != null) "Yakin ingin memesan ini?" else "Anda belum memilih No Plat Kendaraan"
+        val messege = if (noPlat != null) "No Plat : $noPlat \nItem : ${data.nama} \nHarga : ${data.harga}" else "Masukkan No Plat kendaraan dulu ?"
 
         val dialog = AlertDialog.Builder(this)
         dialog.setTitle(title)
             .setMessage(messege)
             .setPositiveButton("Ya") {_, _ ->
-                if (noMeja != null) {
+                if (noPlat != null) {
                     val values = ContentValues()
-                    values.put(DatabaseContract.NoteColumn.NOMER_MEJA, noMeja)
+                    values.put(DatabaseContract.NoteColumn.NOMER_PLAT, noPlat)
                     values.put(DatabaseContract.NoteColumn.NAMA, data.nama)
                     values.put(DatabaseContract.NoteColumn.HARGA, data.harga)
                     values.put(DatabaseContract.NoteColumn.WAKTU, getCurrentDate())
                     val result = pesananHelper.insert(values)
                     if (result > 0) {
                         val intent = Intent(this, ListPesananActivity::class.java)
-                        intent.putExtra(Key.KEY_NO_MEJA, noMeja)
+                        intent.putExtra(Key.KEY_NO_PLAT, noPlat)
                         startActivity(intent)
                     }
                 } else {
                     val intent = Intent(this, PesananActivity::class.java)
-                    intent.putExtra(Key.KEY_DASHBOARD, "Pilih No Meja")
+                    intent.putExtra(Key.KEY_DASHBOARD, "Masukkan No Plat")
                     startActivity(intent)
                 }
             }

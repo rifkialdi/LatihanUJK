@@ -3,15 +3,12 @@ package com.example.latihan_ujk.pesanan
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihan_ujk.DashboardActivity
-import com.example.latihan_ujk.R
 import com.example.latihan_ujk.databinding.ActivityListPesananBinding
 import com.example.latihan_ujk.db.MappingHelper
 import com.example.latihan_ujk.db.PesananHelper
@@ -34,7 +31,7 @@ class ListPesananActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val getNoMeja = intent.getStringExtra(Key.KEY_NO_MEJA)!!
+        val getNoPlat = intent.getStringExtra(Key.KEY_NO_PLAT)!!
 
         binding.idbtnKirim.setOnClickListener {
             startActivity(Intent(this, DashboardActivity::class.java))
@@ -42,7 +39,7 @@ class ListPesananActivity : AppCompatActivity() {
 
         binding.idbtnTambah.setOnClickListener {
             val intent = Intent(this, KategoriActivity::class.java)
-            intent.putExtra(Key.KEY_NO_MEJA, getNoMeja)
+            intent.putExtra(Key.KEY_NO_PLAT, getNoPlat)
             startActivity(intent)
         }
 
@@ -64,16 +61,16 @@ class ListPesananActivity : AppCompatActivity() {
                         .show()
             }
         })
-        showPesanan(getNoMeja)
+        showPesanan(getNoPlat)
     }
 
-    fun showPesanan(noMeja: String) {
+    fun showPesanan(noPlat: String) {
         lifecycleScope.launch {
             pesananHelper = PesananHelper.getInstance(applicationContext)
             pesananHelper.open()
 
             val defferedPesanan = async(Dispatchers.IO) {
-                val cursor = pesananHelper.queryByNoMeja(noMeja)
+                val cursor = pesananHelper.queryByNoMeja(noPlat)
                 MappingHelper.mapCursorToArrayList(cursor)
             }
 
@@ -86,7 +83,7 @@ class ListPesananActivity : AppCompatActivity() {
             pesananHelper.close()
 
             showListPesanan()
-            supportActionBar?.title = "Pesanan No Meja $noMeja"
+            supportActionBar?.title = "Pesanan No Motor $noPlat"
         }
     }
 

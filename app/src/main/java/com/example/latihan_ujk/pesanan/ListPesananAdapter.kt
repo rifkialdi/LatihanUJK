@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.latihan_ujk.databinding.ItemListPesananBinding
-import com.example.latihan_ujk.model.Kategori
 import com.example.latihan_ujk.model.PesananModel
 
 class ListPesananAdapter(private val onItemClickCallback: IOnItemClickCallback) : RecyclerView.Adapter<ListPesananAdapter.ListViewHolder>() {

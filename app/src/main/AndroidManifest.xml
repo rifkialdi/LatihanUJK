@@ -16,7 +16,7 @@
         android:theme="@style/Theme.LatihanUJK"
         tools:targetApi="31" >
         <activity
-            android:name=".dapur.DapurActivity"
+            android:name=".bengkel.BengkelActivity"
             android:exported="false" />
         <activity
             android:name=".pesanan.ListPesananActivity"

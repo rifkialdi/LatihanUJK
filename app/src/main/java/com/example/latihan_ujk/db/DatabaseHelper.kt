@@ -13,7 +13,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private const val DATABASE_VERSION = 1
         private const val SQL_CREATE_TABLE_NOTE = "CREATE TABLE $TABLE_NAME" +
                 "(${NoteColumn._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "${NoteColumn.NOMER_MEJA} VARCHAR(2)," +
+                "${NoteColumn.NOMER_PLAT} VARCHAR(2)," +
                 "${NoteColumn.NAMA} VARCHAR(50)," +
                 "${NoteColumn.HARGA} VARCHAR(10)," +
                 "${WAKTU} VARCHAR(20));"

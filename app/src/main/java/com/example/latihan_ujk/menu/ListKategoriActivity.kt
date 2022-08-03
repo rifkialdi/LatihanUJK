@@ -13,7 +13,7 @@ import com.example.latihan_ujk.model.Kategori
 class ListKategoriActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListKategoriBinding
-    private var getNoMejaPesanan: String? = null
+    private var getNoPlat: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class ListKategoriActivity : AppCompatActivity() {
         supportActionBar?.title = getData.kategori
         source(getData)
 
-        getNoMejaPesanan = intent.getStringExtra(Key.KEY_NO_MEJA)
+        getNoPlat = intent.getStringExtra(Key.KEY_NO_PLAT)
     }
 
     fun source(dataKategori: Kategori) {
@@ -40,7 +40,7 @@ class ListKategoriActivity : AppCompatActivity() {
                     val intent = Intent(this@ListKategoriActivity, DetailListKategoriActivity::class.java)
                     intent.putExtra(Key.KEY_DETAIL_KATEGORI, item)
                     intent.putExtra(Key.KEY_KATEGORI, dataKategori.kategori)
-                    intent.putExtra(Key.KEY_NO_MEJA, getNoMejaPesanan)
+                    intent.putExtra(Key.KEY_NO_PLAT, getNoPlat)
                     startActivity(intent)
                 }
             })

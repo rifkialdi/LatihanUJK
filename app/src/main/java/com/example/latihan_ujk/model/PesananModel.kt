@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class PesananModel(
     val id: Int,
-    val nomerMeja: String,
+    val nomePlat: String,
     val nama: String,
     val harga: String,
     val waktu: String

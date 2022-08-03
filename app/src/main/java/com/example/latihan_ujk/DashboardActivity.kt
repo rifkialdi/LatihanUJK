@@ -3,11 +3,9 @@ package com.example.latihan_ujk
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import com.example.latihan_ujk.dapur.DapurActivity
+import com.example.latihan_ujk.bengkel.BengkelActivity
 import com.example.latihan_ujk.databinding.ActivityDashboardBinding
-import com.example.latihan_ujk.key.Key
 import com.example.latihan_ujk.menu.KategoriActivity
 import com.example.latihan_ujk.pesanan.PesananActivity
 
@@ -38,7 +36,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.idbtn_dapur -> {
-                startActivity(Intent(this, DapurActivity::class.java))
+                startActivity(Intent(this, BengkelActivity::class.java))
             }
         }
     }
